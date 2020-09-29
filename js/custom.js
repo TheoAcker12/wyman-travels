@@ -7,7 +7,12 @@ layer_PlaceNamesWyman_Master_WGS84_1.eachLayer(function (layer) {
 
 
 function handleStepEnter(response) {
-    features.get(response.element.getAttribute("feature")).openPopup();
+    //console.log(features.get(response.element.getAttribute("feature")));
+    
+    feature_layer = features.get(response.element.getAttribute("feature"));
+    map.flyTo(feature_layer._latlng, zoom=12);
+    //console.log(feature_layer)
+    feature_layer.openPopup();
 }
 function handleStepExit(response) {
     features.get(response.element.getAttribute("feature")).closePopup();
