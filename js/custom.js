@@ -1,9 +1,3 @@
-var main = document.getElementById("main");
-var scrolly = document.getElementById("scrolly");
-var map = document.getElementById("map");
-var scroll_text = document.getElementById("scroll-text");
-var step = document.getElementsByClassName("step");
-
 var scroller = scrollama();
 
 function handleStepEnter(response) {
