@@ -1,7 +1,7 @@
 var scroller = scrollama();
 
 var features = new Map();
-layer_PlaceNamesWyman_Master_WGS84_1.eachLayer(function (layer) {
+layer_PlaceNamesGeneric.eachLayer(function (layer) {
     features.set(layer.feature.properties['NAME'], layer);
 })
 

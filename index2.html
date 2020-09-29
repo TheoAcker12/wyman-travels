@@ -26,17 +26,17 @@
                     <h1>Title of Page/Project</h1>
                 </div>
                 <div id="scroll-text">
-                    <div class="step" feature="HIBERNIA">
+                    <div class="step" feature="Location 1">
                         <h2>Step Number One</h2>
-                        <p>Hibernia tip</p>
+                        <p>Location 1 tip</p>
                     </div>
-                    <div class="step" feature="BALDWIN">
+                    <div class="step" feature="Location 2">
                         <h2>Step Number Two</h2>
-                        <p>Baldwin tip</p>
+                        <p>Location 2 tip</p>
                     </div>
-                    <div class="step" feature="YELLOW BLUFF P.O.">
+                    <div class="step" feature="Location 3">
                         <h2>Step Number Three</h2>
-                        <p>Yellow Bluff PO tip</p>
+                        <p>Location 3 tip</p>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <script src="./js/labelgun.min.js"></script>
             <script src="./js/labels.js"></script>
             <script src="./js/leaflet-search.js"></script>
-            <script src="./data/PlaceNamesWyman_Master_WGS84_1.js"></script>
+            <script src="./data/PlaceNamesGeneric.js"></script>
             <script src="https://unpkg.com/intersection-observer"></script>
             <script src="https://unpkg.com/scrollama"></script>
             <script>
@@ -88,7 +88,7 @@
                 });
                 layer_ESRISatelliteArcGISWorld_Imagery_0;
                 map.addLayer(layer_ESRISatelliteArcGISWorld_Imagery_0);
-                function pop_PlaceNamesWyman_Master_WGS84_1(feature, layer) {
+                function pop_PlaceNamesGeneric(feature, layer) {
                     layer.on({
                         mouseout: function(e) {
                             if (typeof layer.closePopup == 'function') {
@@ -106,30 +106,15 @@
                                 <td colspan="2"><strong>NAME</strong><br />' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
                             </tr>\
                             <tr>\
-                                <td colspan="2">' + (feature.properties['TYPE'] !== null ? autolinker.link(feature.properties['TYPE'].toLocaleString()) : '') + '</td>\
-                            </tr>\
-                            <tr>\
-                                <td colspan="2">' + (feature.properties['YEAR_'] !== null ? autolinker.link(feature.properties['YEAR_'].toLocaleString()) : '') + '</td>\
-                            </tr>\
-                            <tr>\
-                                <td colspan="2">' + (feature.properties['SOURCE'] !== null ? autolinker.link(feature.properties['SOURCE'].toLocaleString()) : '') + '</td>\
-                            </tr>\
-                            <tr>\
-                                <td colspan="2">' + (feature.properties['ALT_NAME'] !== null ? autolinker.link(feature.properties['ALT_NAME'].toLocaleString()) : '') + '</td>\
-                            </tr>\
-                            <tr>\
-                                <td colspan="2">' + (feature.properties['Y1867'] !== null ? autolinker.link(feature.properties['Y1867'].toLocaleString()) : '') + '</td>\
-                            </tr>\
-                            <tr>\
-                                <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                                <td colspan="2">' + (feature.properties['INFO'] !== null ? autolinker.link(feature.properties['INFO'].toLocaleString()) : '') + '</td>\
                             </tr>\
                         </table>';
                     layer.bindPopup(popupContent, {maxHeight: 400});
                 }
 
-                function style_PlaceNamesWyman_Master_WGS84_1_0() {
+                function style_PlaceNamesGeneric_0() {
                     return {
-                        pane: 'pane_PlaceNamesWyman_Master_WGS84_1',
+                        pane: 'pane_PlaceNamesGeneric',
                         radius: 4.0,
                         opacity: 1,
                         color: 'rgba(35,35,35,1.0)',
@@ -143,48 +128,48 @@
                         interactive: true,
                     }
                 }
-                map.createPane('pane_PlaceNamesWyman_Master_WGS84_1');
-                map.getPane('pane_PlaceNamesWyman_Master_WGS84_1').style.zIndex = 401;
-                map.getPane('pane_PlaceNamesWyman_Master_WGS84_1').style['mix-blend-mode'] = 'normal';
-                var layer_PlaceNamesWyman_Master_WGS84_1 = new L.geoJson(json_PlaceNamesWyman_Master_WGS84_1, {
+                map.createPane('pane_PlaceNamesGeneric');
+                map.getPane('pane_PlaceNamesGeneric').style.zIndex = 401;
+                map.getPane('pane_PlaceNamesGeneric').style['mix-blend-mode'] = 'normal';
+                var layer_PlaceNamesGeneric = new L.geoJson(json_PlaceNamesGeneric, {
                     attribution: '',
                     interactive: true,
-                    dataVar: 'json_PlaceNamesWyman_Master_WGS84_1',
-                    layerName: 'layer_PlaceNamesWyman_Master_WGS84_1',
-                    pane: 'pane_PlaceNamesWyman_Master_WGS84_1',
-                    onEachFeature: pop_PlaceNamesWyman_Master_WGS84_1,
+                    dataVar: 'json_PlaceNamesGeneric',
+                    layerName: 'layer_PlaceNamesGeneric',
+                    pane: 'pane_PlaceNamesGeneric',
+                    onEachFeature: pop_PlaceNamesGeneric,
                     pointToLayer: function (feature, latlng) {
                         var context = {
                             feature: feature,
                             variables: {}
                         };
-                        return L.circleMarker(latlng, style_PlaceNamesWyman_Master_WGS84_1_0(feature));
+                        return L.circleMarker(latlng, style_PlaceNamesGeneric_0(feature));
                     },
                 });
-                bounds_group.addLayer(layer_PlaceNamesWyman_Master_WGS84_1);
-                map.addLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                bounds_group.addLayer(layer_PlaceNamesGeneric);
+                map.addLayer(layer_PlaceNamesGeneric);
                 map.on("zoomend", function(e) {
                     if (map.getZoom() <= 16 && map.getZoom() >= 8) {
-                        map.addLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                        map.addLayer(layer_PlaceNamesGeneric);
                     } else if (map.getZoom() > 16 || map.getZoom() < 8) {
-                        map.removeLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                        map.removeLayer(layer_PlaceNamesGeneric);
                     }
                 });
                     if (map.getZoom() <= 16 && map.getZoom() >= 8) {
-                        map.addLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                        map.addLayer(layer_PlaceNamesGeneric);
                     } else if (map.getZoom() > 16 || map.getZoom() < 8) {
-                        map.removeLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                        map.removeLayer(layer_PlaceNamesGeneric);
                     }
                 var baseMaps = {};
-                L.control.layers(baseMaps,{'<img src="legend/PlaceNamesWyman_Master_WGS84_1.png" /> PlaceNamesWyman_Master_WGS84': layer_PlaceNamesWyman_Master_WGS84_1,"ESRI Satellite (ArcGIS/World_Imagery)": layer_ESRISatelliteArcGISWorld_Imagery_0,}).addTo(map);
+                L.control.layers(baseMaps,{'<img src="legend/PlaceNamesGeneric.png" /> PlaceNamesGeneric': layer_PlaceNamesGeneric,"ESRI Satellite (ArcGIS/World_Imagery)": layer_ESRISatelliteArcGISWorld_Imagery_0,}).addTo(map);
                 setBounds();
                 var i = 0;
-                layer_PlaceNamesWyman_Master_WGS84_1.eachLayer(function(layer) {
+                layer_PlaceNamesGeneric.eachLayer(function(layer) {
                     var context = {
                         feature: layer.feature,
                         variables: {}
                     };
-                    layer.bindTooltip((layer.feature.properties['NAME'] !== null?String('<div style="color: #ffffff; font-size: 14pt; font-family: \'.SF NS Text\', sans-serif;">' + layer.feature.properties['NAME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_PlaceNamesWyman_Master_WGS84_1'});
+                    layer.bindTooltip((layer.feature.properties['NAME'] !== null?String('<div style="color: #ffffff; font-size: 14pt; font-family: \'.SF NS Text\', sans-serif;">' + layer.feature.properties['NAME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_PlaceNamesGeneric'});
                     labels.push(layer);
                     totalMarkers += 1;
                     layer.added = true;
@@ -192,21 +177,21 @@
                     i++;
                 });
                 map.addControl(new L.Control.Search({
-                    layer: layer_PlaceNamesWyman_Master_WGS84_1,
+                    layer: layer_PlaceNamesGeneric,
                     initial: false,
                     hideMarkerOnCollapse: true,
                     propertyName: 'NAME'}));
                 document.getElementsByClassName('search-button')[0].className +=
                 ' fa fa-binoculars';
-                resetLabels([layer_PlaceNamesWyman_Master_WGS84_1]);
+                resetLabels([layer_PlaceNamesGeneric]);
                 map.on("zoomend", function(){
-                    resetLabels([layer_PlaceNamesWyman_Master_WGS84_1]);
+                    resetLabels([layer_PlaceNamesGeneric]);
                 });
                 map.on("layeradd", function(){
-                    resetLabels([layer_PlaceNamesWyman_Master_WGS84_1]);
+                    resetLabels([layer_PlaceNamesGeneric]);
                 });
                 map.on("layerremove", function(){
-                    resetLabels([layer_PlaceNamesWyman_Master_WGS84_1]);
+                    resetLabels([layer_PlaceNamesGeneric]);
                 });
             </script>
             <script src="./js/custom.js"></script>
