@@ -1,8 +1,16 @@
 var scroller = scrollama();
 
+var features = new Map();
+layer_PlaceNamesWyman_Master_WGS84_1.eachLayer(function (layer) {
+    features.set(layer.feature.properties['NAME'], layer);
+})
+
+
 function handleStepEnter(response) {
-    console.log(response);
-    console.log(response.index);
+    features.get(response.element.getAttribute("feature")).openPopup();
+}
+function handleStepExit(response) {
+    features.get(response.element.getAttribute("feature")).openPopup();
 }
 function init() {
     scroller
@@ -11,7 +19,8 @@ function init() {
             offset: 0.33,
             debug: true
         })
-        .onStepEnter(handleStepEnter);
+        .onStepEnter(handleStepEnter)
+        .onStepExit(handleStepExit);
 }
 
 init();

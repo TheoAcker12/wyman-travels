@@ -26,15 +26,15 @@
                     <h1>Title of Page/Project</h1>
                 </div>
                 <div id="scroll-text">
-                    <div class="step">
+                    <div class="step" feature="HIBERNIA">
                         <h2>Step Number One</h2>
                         <p>Hibernia tip</p>
                     </div>
-                    <div class="step">
+                    <div class="step" feature="BALDWIN">
                         <h2>Step Number Two</h2>
                         <p>Baldwin tip</p>
                     </div>
-                    <div class="step">
+                    <div class="step" feature="YELLOW BLUFF P.O.">
                         <h2>Step Number Three</h2>
                         <p>Yellow Bluff PO tip</p>
                     </div>
@@ -63,7 +63,6 @@
                 var highlightLayer;
                 function highlightFeature(e) {
                     highlightLayer = e.target;
-                    console.log(e.target);
                     highlightLayer.openPopup();
                 }
                 var map = L.map('map', {
