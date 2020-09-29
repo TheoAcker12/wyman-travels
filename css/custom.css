@@ -1,0 +1,22 @@
+#scroll-text {
+    position: relative;
+    width: 33%;
+}
+
+.step {
+    height: 30rem;
+    margin: 8rem auto;
+}
+#map {
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 33%;
+    bottom: auto;
+}
+
+.top {
+    margin-bottom: 15rem;
+}

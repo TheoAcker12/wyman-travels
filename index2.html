@@ -1,10 +1,215 @@
+<!DOCTYPE html>
 <html lang="en">
-    <head></head>
+    <head>
+        <!-- metadata -->
+
+        <!-- other -->
+        <title>Website Title</title>
+
+        <!-- css -->
+        <link rel="stylesheet" href="./css/leaflet.css">
+        <link rel="stylesheet" href="./css/qgis2web.css">
+        <link rel="stylesheet" href="./css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="./css/leaflet-search.css">
+        <link rel="stylesheet" href="./css/custom.css">
+    </head>
     <body>
-        <div style="float:left; width:33%">Text and Images
-        </div>
-        <div style="float:right; width:66%">
-        Map
+        <!-- skip link -->
+
+        <!-- navbar -->
+
+        <!-- main content -->
+        <main id="main">
+            <!-- scrolly setup -->
+            <div id="scrolly">
+                <div class="top">
+                    <h1>Title of Page/Project</h1>
+                </div>
+                <div id="scroll-text">
+                    <div class="step" feature="HIBERNIA">
+                        <h2>Step Number One</h2>
+                        <p>Hibernia tip</p>
+                    </div>
+                    <div class="step" feature="BALDWIN">
+                        <h2>Step Number Two</h2>
+                        <p>Baldwin tip</p>
+                    </div>
+                    <div class="step" feature="YELLOW BLUFF P.O.">
+                        <h2>Step Number Three</h2>
+                        <p>Yellow Bluff PO tip</p>
+                    </div>
+                </div>
+            </div>
+            <!-- map setup-->
+            <div id="map">
+
+            </div>
+        </main>
+        <div class="scripts" style="display: none">
+            <script src="./js/qgis2web_expressions.js"></script>
+            <script src="./js/leaflet.js"></script>
+            <script src="./js/leaflet.rotatedMarker.js"></script>
+            <script src="./js/leaflet.pattern.js"></script>
+            <script src="./js/leaflet-hash.js"></script>
+            <script src="./js/Autolinker.min.js"></script>
+            <script src="./js/rbush.min.js"></script>
+            <script src="./js/labelgun.min.js"></script>
+            <script src="./js/labels.js"></script>
+            <script src="./js/leaflet-search.js"></script>
+            <script src="./data/PlaceNamesWyman_Master_WGS84_1.js"></script>
+            <script src="https://unpkg.com/intersection-observer"></script>
+            <script src="https://unpkg.com/scrollama"></script>
+            <script>
+                var highlightLayer;
+                function highlightFeature(e) {
+                    highlightLayer = e.target;
+                    highlightLayer.openPopup();
+                }
+                var map = L.map('map', {
+                    zoomControl:true, maxZoom:28, minZoom:1
+                }).fitBounds([[29.9206551380381,-82.05465677148355],[30.446769539086894,-80.92677753263384]]);
+                var hash = new L.Hash(map);
+                map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+                var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+                var bounds_group = new L.featureGroup([]);
+                function setBounds() {
+                    map.setMaxBounds(map.getBounds());
+                }
+                map.createPane('pane_ESRISatelliteArcGISWorld_Imagery_0');
+                map.getPane('pane_ESRISatelliteArcGISWorld_Imagery_0').style.zIndex = 400;
+                var layer_ESRISatelliteArcGISWorld_Imagery_0 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    pane: 'pane_ESRISatelliteArcGISWorld_Imagery_0',
+                    opacity: 1.0,
+                    attribution: '',
+                    minZoom: 1,
+                    maxZoom: 28,
+                    minNativeZoom: 0,
+                    maxNativeZoom: 19
+                });
+                layer_ESRISatelliteArcGISWorld_Imagery_0;
+                map.addLayer(layer_ESRISatelliteArcGISWorld_Imagery_0);
+                function pop_PlaceNamesWyman_Master_WGS84_1(feature, layer) {
+                    layer.on({
+                        mouseout: function(e) {
+                            if (typeof layer.closePopup == 'function') {
+                                layer.closePopup();
+                            } else {
+                                layer.eachLayer(function(feature){
+                                    feature.closePopup()
+                                });
+                            }
+                        },
+                        mouseover: highlightFeature,
+                    });
+                    var popupContent = '<table>\
+                            <tr>\
+                                <td colspan="2"><strong>NAME</strong><br />' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2">' + (feature.properties['TYPE'] !== null ? autolinker.link(feature.properties['TYPE'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2">' + (feature.properties['YEAR_'] !== null ? autolinker.link(feature.properties['YEAR_'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2">' + (feature.properties['SOURCE'] !== null ? autolinker.link(feature.properties['SOURCE'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2">' + (feature.properties['ALT_NAME'] !== null ? autolinker.link(feature.properties['ALT_NAME'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2">' + (feature.properties['Y1867'] !== null ? autolinker.link(feature.properties['Y1867'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                            </tr>\
+                        </table>';
+                    layer.bindPopup(popupContent, {maxHeight: 400});
+                }
+
+                function style_PlaceNamesWyman_Master_WGS84_1_0() {
+                    return {
+                        pane: 'pane_PlaceNamesWyman_Master_WGS84_1',
+                        radius: 4.0,
+                        opacity: 1,
+                        color: 'rgba(35,35,35,1.0)',
+                        dashArray: '',
+                        lineCap: 'butt',
+                        lineJoin: 'miter',
+                        weight: 1,
+                        fill: true,
+                        fillOpacity: 1,
+                        fillColor: 'rgba(225,89,137,1.0)',
+                        interactive: true,
+                    }
+                }
+                map.createPane('pane_PlaceNamesWyman_Master_WGS84_1');
+                map.getPane('pane_PlaceNamesWyman_Master_WGS84_1').style.zIndex = 401;
+                map.getPane('pane_PlaceNamesWyman_Master_WGS84_1').style['mix-blend-mode'] = 'normal';
+                var layer_PlaceNamesWyman_Master_WGS84_1 = new L.geoJson(json_PlaceNamesWyman_Master_WGS84_1, {
+                    attribution: '',
+                    interactive: true,
+                    dataVar: 'json_PlaceNamesWyman_Master_WGS84_1',
+                    layerName: 'layer_PlaceNamesWyman_Master_WGS84_1',
+                    pane: 'pane_PlaceNamesWyman_Master_WGS84_1',
+                    onEachFeature: pop_PlaceNamesWyman_Master_WGS84_1,
+                    pointToLayer: function (feature, latlng) {
+                        var context = {
+                            feature: feature,
+                            variables: {}
+                        };
+                        return L.circleMarker(latlng, style_PlaceNamesWyman_Master_WGS84_1_0(feature));
+                    },
+                });
+                bounds_group.addLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                map.addLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                map.on("zoomend", function(e) {
+                    if (map.getZoom() <= 16 && map.getZoom() >= 8) {
+                        map.addLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                    } else if (map.getZoom() > 16 || map.getZoom() < 8) {
+                        map.removeLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                    }
+                });
+                    if (map.getZoom() <= 16 && map.getZoom() >= 8) {
+                        map.addLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                    } else if (map.getZoom() > 16 || map.getZoom() < 8) {
+                        map.removeLayer(layer_PlaceNamesWyman_Master_WGS84_1);
+                    }
+                var baseMaps = {};
+                L.control.layers(baseMaps,{'<img src="legend/PlaceNamesWyman_Master_WGS84_1.png" /> PlaceNamesWyman_Master_WGS84': layer_PlaceNamesWyman_Master_WGS84_1,"ESRI Satellite (ArcGIS/World_Imagery)": layer_ESRISatelliteArcGISWorld_Imagery_0,}).addTo(map);
+                setBounds();
+                var i = 0;
+                layer_PlaceNamesWyman_Master_WGS84_1.eachLayer(function(layer) {
+                    var context = {
+                        feature: layer.feature,
+                        variables: {}
+                    };
+                    layer.bindTooltip((layer.feature.properties['NAME'] !== null?String('<div style="color: #ffffff; font-size: 14pt; font-family: \'.SF NS Text\', sans-serif;">' + layer.feature.properties['NAME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_PlaceNamesWyman_Master_WGS84_1'});
+                    labels.push(layer);
+                    totalMarkers += 1;
+                    layer.added = true;
+                    addLabel(layer, i);
+                    i++;
+                });
+                map.addControl(new L.Control.Search({
+                    layer: layer_PlaceNamesWyman_Master_WGS84_1,
+                    initial: false,
+                    hideMarkerOnCollapse: true,
+                    propertyName: 'NAME'}));
+                document.getElementsByClassName('search-button')[0].className +=
+                ' fa fa-binoculars';
+                resetLabels([layer_PlaceNamesWyman_Master_WGS84_1]);
+                map.on("zoomend", function(){
+                    resetLabels([layer_PlaceNamesWyman_Master_WGS84_1]);
+                });
+                map.on("layeradd", function(){
+                    resetLabels([layer_PlaceNamesWyman_Master_WGS84_1]);
+                });
+                map.on("layerremove", function(){
+                    resetLabels([layer_PlaceNamesWyman_Master_WGS84_1]);
+                });
+            </script>
+            <script src="./js/custom.js"></script>
         </div>
     </body>
 </html>
